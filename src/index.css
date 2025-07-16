@@ -2,39 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Appointment Management App Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 15% 98%;
+    --foreground: 220 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 10% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 214 84% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 10% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 84% 56%;
+
+    /* App-specific gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(214 84% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 14% 96%), hsl(220 13% 91%));
+    --gradient-accent: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 50%));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(220 10% 15% / 0.1), 0 2px 4px -1px hsl(220 10% 15% / 0.06);
+    --shadow-elevated: 0 10px 15px -3px hsl(220 10% 15% / 0.1), 0 4px 6px -2px hsl(220 10% 15% / 0.05);
+    --shadow-primary: 0 4px 14px 0 hsl(214 84% 56% / 0.4);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -101,5 +117,59 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Card enhancements */
+  .card-elevated {
+    @apply shadow-[var(--shadow-elevated)];
+  }
+  
+  .card-primary {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground shadow-[var(--shadow-primary)];
+  }
+
+  .card-accent {
+    background: var(--gradient-accent);
+    @apply text-accent-foreground;
+  }
+
+  /* Button enhancements */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground hover:opacity-90 transition-[var(--transition-smooth)];
+  }
+
+  .btn-accent {
+    background: var(--gradient-accent);
+    @apply text-accent-foreground hover:opacity-90 transition-[var(--transition-smooth)];
+  }
+
+  /* Interactive elements */
+  .interactive-card {
+    @apply transition-[var(--transition-smooth)] hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1 cursor-pointer;
+  }
+
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+
+  .bounce-transition {
+    transition: var(--transition-bounce);
+  }
+
+  /* Status indicators */
+  .status-confirmed {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .status-pending {
+    @apply bg-warning text-warning-foreground;
+  }
+
+  .status-cancelled {
+    @apply bg-destructive text-destructive-foreground;
   }
 }
